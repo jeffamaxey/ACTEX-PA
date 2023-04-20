@@ -7,6 +7,7 @@ This document is organized into three sections:
 * Unsupervised Learning
 
 ## 8.1 General Model Building Steps
+
 ### 8.1.1 Problem Definition
 
 * __Three main categories of predictive analytics modeling problems:__
@@ -25,8 +26,8 @@ This document is organized into three sections:
 * __How to produce a meaningful problem definition?__
   * __General Strategy__: Get to the root cause of the business issue and make it specific enough to be solvable.
   * __Specific Strategies__: 
-    * _(Hypotheses)_ Use prior knowledge of the business problem to ask questions and develop testable hypotheses.
-    * _(KPIs)_ Select appropriate key performance indicators to provide a quantitative basis for measuring success.
+   * _(Hypotheses):_ Use prior knowledge of the business problem to ask questions and develop testable hypotheses.
+   * _(KPIs):_ Select appropriate key performance indicators to provide a quantitative basis for measuring success.
     
 * __Constraints__
   * The availability of easily accessible and high quality data.
@@ -36,6 +37,7 @@ This document is organized into three sections:
 ## 8.1.2 Data Collection
 
 ### __Data Design__
+
 * __Revelance__: Need to ensure that the data is unbiased, i.e., representative of the environment where the model will operate.
   * __Population__: Important for the data source to be a good proxy of the true population of interest.
   * __Time frame__: Advisable to choose the time period which best reflects the business environment of interest. In general, recent history is better than distant history.
@@ -51,15 +53,12 @@ This document is organized into three sections:
 
 ### __Data Quality Issues__
 * __Reasonableness__: Data values should be reasonable (make sense) in the context of the business problem, e.g. Let $\text{age, time} \geq 0$.
-
 * __Consistency__: Records in the data should be inputted consistently on the same basis and rules, e.g., same unit for numeric variables, and same coding scheme for categorical variables.
-
 * __Sufficient Documentation__: Examples of useful elements:
-
-* A clear description of each variable (numeric vs. factor).
-* Notes about any past updates or other irregularities of the dataset.
-* A statement of accountability for the correctness of the dataset.
-* A description of the governance processes used to manage the dataset.
+  * A clear description of each variable (numeric vs. factor).
+  * Notes about any past updates or other irregularities of the dataset.
+  * A statement of accountability for the correctness of the dataset.
+  * A description of the governance processes used to manage the dataset.
 
 ### __Other Data Issues__
 * __Personally identifiable information (PII)__: Information that can be used to trace an individual's identity, e.g., name, SSN, address, photographs, and biometric records.
@@ -87,12 +86,29 @@ _How to handle PII?_
  & \text{1. Clean the data to make it ready for analysis} \\
  & \text{2. Identify potentially useful predictors} \\
  & \text{3. Generate useful features} \\
- & \begin{align*}\text{4. Decide which type of model (GLMs or trees) is more suitable} \\ \text{(e.g., for a highly non-linear relation, trees may do better)}\end{align*}} \\ 
+ & \text{4. Decide which type of model (GLMs or trees) is more suitable} \\ 
+ & \text{(e.g., for a highly non-linear relation, trees may do better)}
 \end{cases}
 ```
 
-& \text{\begin{multline}Decide which type of model (GLMs or trees) is more suitable} \\(e.g., for a highly non-linear relation, trees may do better)\end{multline}} \\
-\end{cases}
+* __Univariate Data Exploration Tools:__
+
+| Variable Type | Descriptive Statistics | Visual Displays | Observations |
+|:---|:---|:---|:---|
+| Numeric Variables | • Mean <br> • Median <br> • Variance <br> • Min <br> • Max | • Histograms <br> • Boxplots | • Any (right) skew? <br> • Any Outliers? |
+| Categorical Variables | Class Frequencies | Bar Charts | • Which levels are common? <br> • Any sparse levels? <br> • (For binary targets) Presence of imblance |
+
+* __Bivariate Data Exploration Tools:__
+
+| Variable Type | Descriptive Statistics | Visual Displays | Observations |
+|:---|:---|:---|:---|
+| Numeric x Numeric         | • Correlations                              | • Scatterplots                                   | • Any noticeable relationships e.g., monotonic, non-lienar?               |
+| Numeric x Categorical     | • Mean/Median Split By Categorical Variable | • Split boxplots, histograms (stacked or dodged) | • Any sizable differences in the means / medians among the factor levels? |
+| Categorical x Categorical | • 2-way Frequency Table                     | • Bar charts (stacked, dodged or filled)         | • Any sizable differences in the proportions among the factor levels?     |
+
+
+
+
 
 # 8.2 Specific Types of Models
 
