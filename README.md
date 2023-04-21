@@ -119,16 +119,16 @@ _How to handle PII?_
 
 * __Motivation__: Sparse factor levels (often for a high-D categorical predictor) reduce robustness of models and cause overfitting.
 * __What To Do:__: Combine sparse levels with more populous levels where the target variable behaves similarly to form more representative groups.
-* __Trade-off__: To strike a balance between:
- * Ensuring each level has a sufficient no. of observations
- * Preserving the differences in the behavior of the target variable among different factor levels for prediction.  
+* __Trade-off__: To strike a balance between:  
+  * Ensuring each level has a sufficient no. of observations
+  * Preserving the differences in the behavior of the target variable among different factor levels for prediction.  
 
 * __Tip__: Knowledge of the meaning of the variables is often useful when making combinations, e.g., regrouping hour of day as morning, afternoon and evening. Use common sense and check the data dictionary.
 
-### __Interaction:___
+### __Interaction:__
 
 * __Definition:__ Effect of a predictor on the target variable depends on the value/level of another predictor.
- * (_Tip:_ Good to include the definition in your response whenever an exam tests interaction!). 
+  * (_Tip:_ Good to include the definition in your response whenever an exam tests interaction!). 
 * __Graphical Displays to Detect Interactions:__ 
 
 | Predictor Combination 	| Numeric Target 	| Categorical Target 	|
@@ -137,9 +137,9 @@ _How to handle PII?_
 | Categorical x Categorical 	| Boxplot for target split by one predictor and faceted by another predictor. 	| Bar chart for one predictor filled by target and faceted by another predictor. 	|
 | Numeric x Numeric 	| Bin on of the predictions (i.e., cut it into several ranges), <br>or try a decision tree. 	| Bin on of the predictions (i.e., cut it into several ranges), <br>or try a decision tree. 	|
 
-* __Interaction vs. Correlation:__
- * _Interaction:_ Concerns a 3-way relationship (1 target variable and 2 predictors)
- * _Correlation:_ Concerns a 2-way relationship (2 predictors)
+* __Interaction vs. Correlation:__  
+  * _Interaction:_ Concerns a 3-way relationship (1 target variable and 2 predictors)
+  * _Correlation:_ Concerns a 2-way relationship (2 predictors)
 
 ## 8.1.4: Model COnstruction & Evaluation
 
