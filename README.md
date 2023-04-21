@@ -91,14 +91,14 @@ _How to handle PII?_
 \end{cases}
 ```
 
-* __Univariate Data Exploration Tools:__
+### __Univariate Data Exploration Tools:__
 
 | Variable Type | Descriptive Statistics | Visual Displays | Observations |
 |:---|:---|:---|:---|
 | Numeric Variables | • Mean <br> • Median <br> • Variance <br> • Min <br> • Max | • Histograms <br> • Boxplots | • Any (right) skew? <br> • Any Outliers? |
 | Categorical Variables | Class Frequencies | Bar Charts | • Which levels are common? <br> • Any sparse levels? <br> • (For binary targets) Presence of imblance |
 
-* __Bivariate Data Exploration Tools:__
+### __Bivariate Data Exploration Tools:__
 
 | Variable Type | Descriptive Statistics | Visual Displays | Observations |
 |:---|:---|:---|:---|
@@ -106,7 +106,42 @@ _How to handle PII?_
 | Numeric x Categorical     | • Mean/Median Split By Categorical Variable | • Split boxplots, histograms (stacked or dodged) | • Any sizable differences in the means / medians among the factor levels? |
 | Categorical x Categorical | • 2-way Frequency Table                     | • Bar charts (stacked, dodged or filled)         | • Any sizable differences in the proportions among the factor levels?     |
 
+### Common Issues for Numeric Variables
 
+| Issue 	| Possible   Solution(s) 	|  	|
+|---	|---	|---	|
+| Right skewness<br>     <br>     (Problem: Extreme values distort visualizations and exert a disproportionate effect on model fit) 	| Apply transformations to remedy right skewness and symmetrize distribution => improve fit of GLMs if variables serve as predictors. <br>(Note: No need if we   use trees and variables serve   as predictors Why?)<br>     <br>• Log transformation   (works only for strictly positive variables)<br>• Square root transformation (works for non-negative variables) 	|  	|
+| Presence of   outliers 	| • Remove: If an outlier is not   likely to have a material effect on the model, then OK to remove it.<br>• Keep: If the   outliers make up only an insignificant proportion of the data, then OK to   leave the in the data.<br>• Modify: Modify the   outliers to make them reasonable.<br>• Using robust model forms: Fit models by minimizing the absolute error (instead of mean   squared error) between the predicted values and the observed values.<br>  (Reason: Absolute error places much   less relative weight on the large errors and reduces the impact of outliers   on the fitted model.)<br>      	|  	|
+| Highly correlated predictors 	| • Drop one of the predictors<br>• Use PCA to compress the orrelated predictors into a few PCs 	|  	|
+| Should it be converted to a factor? 	| "Yes" if:<br>• Variable has a small no. of distinct values.<br>• Variable values are merely numeric labels (no sense of order).<br>• Variable has a complex relationship with target => factor conversion   gives GLMs more flexibility to capture relationship.<br>     <br>"No" if:<br>• Variable has a large number of distinct values (would cause a high   dimension if converted into a factor).<br>• Variable values have a sense of numeric order.<br>• Variable has a simple monotonic relationship with target => its effect   can be effectively captured by a GLM with a single coefficient.<br>• Future observations will have new variable values (e.g., the year   variable in Exercise 3.2.7).<br>      	|  	|
+
+### __Common Issues for Categorical Predictors: Sparse Levels__
+
+* __Motivation__: Sparse factor levels (often for a high-D categorical predictor) reduce robustness of models and cause overfitting.
+* __What To Do:__: Combine sparse levels with more populous levels where the target variable behaves similarly to form more representative groups.
+* __Trade-off__: To strike a balance between:
+ * Ensuring each level has a sufficient no. of observations
+ * Preserving the differences in the behavior of the target variable among different factor levels for prediction.  
+
+* __Tip__: Knowledge of the meaning of the variables is often useful when making combinations, e.g., regrouping hour of day as morning, afternoon and evening. Use common sense and check the data dictionary.
+
+### __Interaction:___
+
+* __Definition:__ Effect of a predictor on the target variable depends on the value/level of another predictor.
+ * (_Tip:_ Good to include the definition in your response whenever an exam tests interaction!). 
+* __Graphical Displays to Detect Interactions:__ 
+
+| Predictor Combination 	| Numeric Target 	| Categorical Target 	|
+|---	|---	|---	|
+| Numeric x Categorical 	| Scatterplot colored by categorical predictor. 	| Boxplot for numeric predictor split by target and faceted by categorical predictor. 	|
+| Categorical x Categorical 	| Boxplot for target split by one predictor and faceted by another predictor. 	| Bar chart for one predictor filled by target and faceted by another predictor. 	|
+| Numeric x Numeric 	| Bin on of the predictions (i.e., cut it into several ranges), <br>or try a decision tree. 	| Bin on of the predictions (i.e., cut it into several ranges), <br>or try a decision tree. 	|
+
+* __Interaction vs. Correlation:__
+ * _Interaction:_ Concerns a 3-way relationship (1 target variable and 2 predictors)
+ * _Correlation:_ Concerns a 2-way relationship (2 predictors)
+
+## 8.1.4: Model COnstruction & Evaluation
 
 
 
